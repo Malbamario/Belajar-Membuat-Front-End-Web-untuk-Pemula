@@ -1,0 +1,78 @@
+body{
+    background-color: #6a4af8;
+}
+
+h1, h4{
+    color: white;
+}
+
+h2{
+    color: #754cc0;
+    font-weight: bold;
+}
+
+.btn-theme-primary{
+    background-color: #754cc0;
+    color: white;
+}
+.btn-theme-primary:hover{
+    color: white;
+}
+
+.card-title-overflow{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+
+form{
+    background-color: #cbbfff;
+}
+
+#overlay{
+    display: none;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+#overlayBG{
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+#editBookForm{
+    margin:auto;
+    width: 50%;
+}
+
+#cancelEdit{
+    background: url('../assets/x-squere.svg');
+    background-size: contain;
+    position: absolute;
+    top: 2%;
+    right: 2%;
+    width: 38px;
+    height: 38px;
+    cursor: pointer;
+    border: none;
+}
+
+#cancelEdit:hover{
+    background: url('../assets/x-squere-fill.svg');
+    background-size: contain;
+}
+
+#empty{
+    background-color: #cbbfff;
+}
