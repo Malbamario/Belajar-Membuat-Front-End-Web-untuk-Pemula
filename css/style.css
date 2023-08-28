@@ -2,6 +2,10 @@ body{
     background-color: #6a4af8;
 }
 
+body>div{
+    min-height: 100vh;
+}
+
 h1, h4{
     color: white;
 }
@@ -52,7 +56,7 @@ form{
 }
 
 #editBookForm{
-    margin:auto;
+    margin: 5em auto auto auto;
     width: 50%;
 }
 
@@ -75,4 +79,42 @@ form{
 
 #empty{
     background-color: #cbbfff;
+}
+
+footer {
+    margin: 1em 0 0 0;
+    padding: 2em 0;
+    background-color: #cbbfff;
+    text-align: center;
+}
+
+footer .sosmed a i {
+    font-size: 3em;
+    margin: 0 0.75em;
+    color: #754cc0;
+}
+
+@media screen and (max-width: 430px) {
+    footer .sosmed a i {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 575px) {
+    #editBookForm{
+        margin: 5em 1em auto 1em;
+        width: auto;
+    }
+}
+
+@media screen and (min-width: 576px) and (max-width: 768px) {
+    #editBookForm{
+        width: 80%;
+    }
+}
+
+@media screen and (min-width: 431px) and (max-width: 768px) {
+    footer .sosmed a i {
+        font-size: 2em;
+    }
 }

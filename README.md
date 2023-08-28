@@ -26,3 +26,15 @@ Berikut daftar kriteria yang diperlukan dalam mengerjakan submission ini.
 - [x] Manfaatkan `localStorage` dalam Menyimpan Data Buku<br>
   - Data buku yang ditampilkan pada rak, baik itu __"Belum selesai dibaca"__ maupun __"Selesai dibaca"__ harus dapat bertahan walaupun halaman web ditutup.
   - Harus menyimpan data buku pada `localStorage`.
+
+Berikut merupakan saran yang dapat ditambahkan ke dalam submission ini.
+
+- [x] Tambahkan fitur pencarian untuk mem-filter buku yang ditampilkan pada rak sesuai dengan title buku yang dituliskan pada kolom pencarian.
+- [x] Berkreasilah dengan membuat proyek Bookshelf Apps tanpa menggunakan project starter.
+- [x] Menuliskan kode dengan bersih.
+  - Bersihkan comment dan kode yang tidak digunakan.
+  - Indentasi yang sesuai.
+- [x] Terdapat improvisasi fitur seperti (pilih satu): 
+  - Custom Dialog ketika menghapus buku.
+  - Dapat edit buku.
+  - dsb.
