@@ -2,8 +2,11 @@ const BOOK_ID = "itemId"
 
 const unreadRow = document.getElementById("unreadRow");
 const readedRow = document.getElementById("readedRow");
+const emptyBox = document.getElementById("empty");
 
 function clearBookself(){
+    readedRow.parentElement.hidden = true;
+    unreadRow.parentElement.hidden = true;
     while (unreadRow.firstChild) {
         unreadRow.removeChild(unreadRow.firstChild);
     }
@@ -15,7 +18,6 @@ function clearBookself(){
 function refreshDataFromBooks(){
     let count = 0;
     clearBookself();
-    const emptyBox = document.getElementById("empty");
     for(book of books){
         const newBookElement = makeBookElement(book.title, book.author, book.year, book.isComplete);
         newBookElement[BOOK_ID] = book.id;
@@ -31,16 +33,14 @@ function refreshDataFromBooks(){
     }
     if(count===0){
         console.log(count);
-        unreadRow.parentElement.hidden = true;
-        readedRow.parentElement.hidden = true;
         emptyBox.hidden = false;
     }
     
-    if(readedRow.firstChild === null){
-        readedRow.parentElement.hidden = true;
+    if(readedRow.firstChild !== null){
+        readedRow.parentElement.hidden = false;
     }
-    if(unreadRow.firstChild === null){
-        unreadRow.parentElement.hidden = true;
+    if(unreadRow.firstChild !== null){
+        unreadRow.parentElement.hidden = false;
     }
 }
 
@@ -59,7 +59,7 @@ function makeBookElement(title, author, year, isComplete){
     const authorNYear = document.createElement("p");
     const btnRow = document.createElement("div");
 
-    container.classList.add("col-md-6", "col-sm-6", "col-lg-6");
+    container.classList.add("col-md-6", "col-lg-6");
     card.classList.add("card", "card-body", "mb-4");
     titleElement.classList.add("card-title", "card-title-overflow");
     authorNYear.classList.add("card-text", "text-secondary");
@@ -102,21 +102,28 @@ function appendToRow(isComplete, element){
 }
 
 function addNewBook(){
-    const addBookForm = document.getElementById("addNewBookForm")
-    const title = addBookForm.querySelector("#titleInput").value;
-    const author = addBookForm.querySelector("#authorInput").value;
-    const year = parseInt(addBookForm.querySelector("#yearInput").value);
-    const isComplete = addBookForm.querySelector("#isCompleteInput").checked;
+    const addBookForm = document.getElementById("addNewBookForm");
+    const titleEl = addBookForm.querySelector("#titleInput");
+    const authorEl = addBookForm.querySelector("#authorInput");
+    const yearEl = addBookForm.querySelector("#yearInput");
+    const year = parseInt(yearEl.value);
+    const isCompleteEl = addBookForm.querySelector("#isCompleteInput")
     
-    let newBookElement = makeBookElement(title, author, year, isComplete);
-    const bookObj = composeBookObject(title, author, year, isComplete);
+    let newBookElement = makeBookElement(titleEl.value, authorEl.value, year, isCompleteEl.checked);
+    const bookObj = composeBookObject(titleEl.value, authorEl.value, year, isCompleteEl.checked);
 
     newBookElement[BOOK_ID] = bookObj.id;
     books.push(bookObj);
 
-    appendToRow(isComplete, newBookElement);
+    appendToRow(isCompleteEl.checked, newBookElement);
     uppdateDataToStorage();
     alert("Book succeed to saved");
+    titleEl.value = "";
+    authorEl.value = "";
+    yearEl.value = "";
+    isCompleteEl.checked = false;
+    const addDiv = document.getElementById("collapseForm")
+    addDiv.classList.remove('show');
 }
 
 function editBook(){
@@ -214,9 +221,9 @@ function addBookToTrash(bookElement){
 }
 
 function searchBook(){
-    let searchedTitle = document.getElementById("inputSearch").value;
+    const searchBar = document.getElementById("inputSearch")
+    let searchedTitle = searchBar.value;
     const isSensitive = document.getElementById("isSensitiveInput").checked;
-
     if(searchedTitle!==""){
         let count = 0;
         for(book of books){
@@ -235,8 +242,17 @@ function searchBook(){
                 count++;
             }
         }
+
+        if(readedRow.firstChild !== null){
+            readedRow.parentElement.hidden = false;
+        }
+        if(unreadRow.firstChild !== null){
+            unreadRow.parentElement.hidden = false;
+        }
+
+        searchBar.value='';
         if(count===0){
             alert("Sorry, the book you search is not found");
         }
-    }
+    } else refreshDataFromBooks();
 }
