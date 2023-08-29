@@ -6,7 +6,7 @@ Berikut daftar kriteria yang diperlukan dalam mengerjakan submission ini.
 
 - [x] Mampu Menambahkan Data Buku<br>
   Data buku yang disimpan merupakan objek JavaScript dengan struktur berikut:
-  ```
+  ```js
   {
     id: string | number, (+new Date())
     title: string,
